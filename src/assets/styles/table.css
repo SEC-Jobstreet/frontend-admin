@@ -1,0 +1,35 @@
+.table-container {
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+tr,
+th,
+td {
+  border: none !important;
+}
+
+th,
+td {
+  font-family: "Barlow", sans-serif;
+}
+
+td {
+  font-weight: 500;
+}
+
+th {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+  text-wrap: nowrap;
+  padding: 16px 12px !important;
+  text-transform: uppercase;
+  max-width: 200px !important;
+}
+
+td {
+  color: var(--text-color) !important;
+  padding: 10px 12px !important;
+  max-width: 200px !important;
+}
