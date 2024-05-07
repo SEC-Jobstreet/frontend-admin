@@ -1,0 +1,57 @@
+.modal-header,
+.modal-body,
+.modal-footer {
+  padding: 16px 28px !important;
+}
+
+.modal-title {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.modal-body .modal-body-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.modal-body .modal-body-content div {
+  margin-bottom: 8px;
+  display: flex;
+}
+
+.modal-body b,
+.modal-body span {
+  font-family: "Barlow", sans-serif;
+}
+
+.modal-body b {
+  display: block;
+  width: 100px;
+}
+
+.modal-body span {
+  display: block;
+  font-weight: 500;
+}
+
+.width-33 {
+  width: 33%;
+}
+
+.width-50 {
+  width: 50%;
+}
+
+.width-100 {
+  width: 50%;
+}
+
+@media screen and (max-width: 1000px) {
+  .modal-body .modal-body-content {
+    flex-direction: column;
+  }
+
+  .modal-body .modal-body-content div {
+    width: 100%;
+  }
+}

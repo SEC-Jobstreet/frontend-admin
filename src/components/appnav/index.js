@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 import "./index.css";
 
-import logo from "../../assets/logo.png";
+import logo from "../../assets/svg/logo.svg";
 
 function Nav() {
   const [showNav, setShowNav] = useState(true);
