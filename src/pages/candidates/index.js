@@ -6,7 +6,7 @@ import CandidateModal from "../../components/modals/candidatemodal";
 import { users } from "../../drafts";
 
 import "../../assets/styles/table.css";
-import "../panigation.css";
+import "../pagination.css";
 
 const itemsPerPage = 10;
 
