@@ -14,12 +14,8 @@ td {
   border: none !important;
 }
 
-th,
-td {
-  font-family: "Barlow", sans-serif;
-}
-
 th {
+  font-family: "Poppins", sans-serif;
   background-color: var(--primary-color) !important;
   color: white !important;
   font-weight: 500;
@@ -28,6 +24,7 @@ th {
 }
 
 td {
+  font-family: "Barlow", sans-serif;
   max-width: 400px !important;
   font-weight: 500;
   color: var(--text-color) !important;

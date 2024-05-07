@@ -37,7 +37,7 @@ function Candidates() {
   };
 
   return (
-    <div className="candidates-page-container">
+    <div className="candidates-page-container app-content">
       <span
         style={{ fontSize: "14px", color: "#2d3748", letterSpacing: "-0.42px" }}
       >

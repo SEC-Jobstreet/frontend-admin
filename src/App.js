@@ -9,9 +9,7 @@ function App() {
   return (
     <div className="App">
       <Nav />
-      <div className="app-content">
-        <AppRouter />
-      </div>
+      <AppRouter />
     </div>
   );
 }

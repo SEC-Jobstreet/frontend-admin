@@ -4,7 +4,7 @@ import "../../assets/styles/table.css";
 
 function Employers() {
   return (
-    <div>
+    <div className="app-content">
       <span
         style={{ fontSize: "14px", color: "#2d3748", letterSpacing: "-0.42px" }}
       >

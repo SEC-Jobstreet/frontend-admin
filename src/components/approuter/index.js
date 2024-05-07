@@ -6,6 +6,7 @@ import Candidates from "../../pages/candidates";
 import Employers from "../../pages/employers";
 import Enterprises from "../../pages/enterprises";
 import Jobs from "../../pages/jobs";
+import Login from "../../pages/login";
 
 // import ProtectedRoute from "./protectedroute";
 
@@ -21,6 +22,7 @@ function AppRouter() {
       <Route exact path="/employers" element={<Employers />} />
       <Route exact path="/jobs" element={<Jobs />} />
       <Route exact path="/enterprises" element={<Enterprises />} />
+      <Route exact path="/login" element={<Login />} />
     </Routes>
   );
 }
