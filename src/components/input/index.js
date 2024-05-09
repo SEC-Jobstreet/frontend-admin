@@ -12,10 +12,10 @@ function CustomInput(props) {
         type={props.type}
         placeholder={props.placeholder}
         value={props.value}
-        onChange={(e) => props.onChange(e.target.value)}
+        onChange={(e) => props.setState(e.target.value)}
         pattern={props.pattern}
         required={props.required}
-        onBlur={(e) => setFocused(true)}
+        onBlur={() => setFocused(true)}
         focused={focused.toString()}
       />
       <span className="error-line">{props.errorMessage}</span>

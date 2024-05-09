@@ -1,19 +1,37 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { IoEyeSharp, IoEyeOffSharp } from "react-icons/io5";
+import { loginAccount } from "../../store/user";
+import { signIn } from "aws-amplify/auth";
 
 import CustomInput from "../../components/input";
 
 import "./index.css";
 
 function Login() {
+  const dispatch = useDispatch();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [isShowPassword, setIsShowPassword] = useState(false);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     console.log({ email, password });
+
+    try {
+      await signIn({
+        username: email,
+        password: password,
+      });
+      dispatch(loginAccount({ email: email }));
+      // dispatch(setNotification(notiLoginAccount));
+      // const temp = document.querySelector(".login-widget-from-nav");
+      // if (temp) temp.style.display = "none";
+    } catch (error) {
+      console.log("error signing in", error);
+    }
   };
 
   return (
@@ -26,7 +44,7 @@ function Login() {
             type="email"
             placeholder="Email"
             value={email}
-            onChange={setEmail}
+            setState={(value) => setEmail(value)}
             errorMessage="It should be a valid email"
             required={true}
           />
@@ -35,7 +53,7 @@ function Login() {
             type={isShowPassword ? "text" : "password"}
             placeholder="Password"
             value={password}
-            onChange={setPassword}
+            setState={(value) => setPassword(value)}
             errorMessage="Password must be at least 8 characters and contain at least one capital letter, one number and no spaces"
             required={true}
             pattern={`^(?=.*[0-9])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{8,}$`}

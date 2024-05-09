@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Table from "react-bootstrap/Table";
 import ReactPaginate from "react-paginate";
 
@@ -11,7 +11,7 @@ import "../pagination.css";
 const itemsPerPage = 10;
 
 function Candidates() {
-  const [candidates, setCandidates] = useState([]);
+  const [candidates, setCandidates] = useState(users);
 
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [rowSelected, setRowSelected] = useState({});
@@ -27,14 +27,14 @@ function Candidates() {
     setItemOffset(newOffset);
   };
 
-  useEffect(() => setCandidates(users), []);
-
   const toggle = () => setIsOpenModal((prev) => !prev);
 
   const handleOnClickRow = (item) => {
     setIsOpenModal(true);
     setRowSelected(item);
   };
+
+  console.log(setCandidates);
 
   return (
     <div className="candidates-page-container app-content">

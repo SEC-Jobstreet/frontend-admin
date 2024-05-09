@@ -3,11 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 const init = {
   account: {
     email: "",
-    email_verified: false,
-    firstName: "",
-    lastName: "",
-    picture: "",
-    phone: "",
   },
 };
 
@@ -25,11 +20,6 @@ export const userSlice = createSlice({
       console.log(action);
       state.account = {
         email: newState.email,
-        firstName: newState.firstName,
-        lastName: newState.lastName,
-        email_verified: newState.email_verified,
-        picture: newState.picture,
-        phone: newState.phone,
       };
     },
   },

@@ -1,12 +1,25 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logoutAccount } from "../../store/user";
+import { signOut } from "aws-amplify/auth";
 
 import "./index.css";
 
 import logo from "../../assets/svg/logo.svg";
 
 function Nav() {
+  const dispatch = useDispatch();
   const [showNav, setShowNav] = useState(true);
+
+  const handleLogout = async () => {
+    try {
+      await signOut();
+      dispatch(logoutAccount());
+    } catch (error) {
+      console.log("error signing out: ", error);
+    }
+  };
 
   return (
     <div className={`sidebar ${!showNav && "close"}`}>
@@ -64,7 +77,7 @@ function Nav() {
               </NavLink>
             </li>
             <li>
-              <button className="btn-logout">
+              <button className="btn-logout" onClick={handleLogout}>
                 <i className="bx bx-log-out icon"></i>
                 <span className="text nav-text">Log out</span>
               </button>
