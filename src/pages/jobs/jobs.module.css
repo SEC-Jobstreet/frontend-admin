@@ -1,0 +1,24 @@
+.filterBarWrapper {
+  display: flex;
+  flex-flow: row;
+  max-width: 280px;
+
+  button {
+    min-width: 80px;
+  }
+}
+
+td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+th,
+td {
+  max-width: 250px !important;
+}
+
+.tableContainer .table {
+  max-width: 1200px;
+}
