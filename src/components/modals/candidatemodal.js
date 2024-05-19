@@ -4,7 +4,7 @@ import "./common.css";
 
 function CandidateModal({ isOpen, toggle, data }) {
   return (
-    <Modal isOpen={isOpen} toggle={toggle} size="lg">
+    <Modal isOpen={isOpen} toggle={toggle} size="lg" className="candidate-modal">
       <ModalHeader toggle={toggle}>Detail</ModalHeader>
       <ModalBody>
         <div className="modal-body-content">

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Button, Form, Table } from "react-bootstrap";
 
 import { getJobList } from "../../services/configAPI";
+import { getTimeString } from "../../ulti/func";
+import JobDetailModal from "../../components/modals/jobdetail";
 
 import styles from "./jobs.module.css";
 import "../../assets/styles/table.css";
@@ -21,6 +23,9 @@ function Jobs() {
   const [status, setStatus] = useState(statusFilter[0].value);
   const [jobs, setJobs] = useState([]);
 
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [rowSelected, setRowSelected] = useState(null);
+
   const handleFilterClick = async () => {
     const respone = await getJobList({
       pageId,
@@ -32,9 +37,16 @@ function Jobs() {
     }
   };
 
+  const toggle = () => setIsOpenModal((prev) => !prev);
+
   useEffect(() => {
     handleFilterClick();
   }, []);
+
+  const handleOnClickRow = (item) => {
+    setIsOpenModal(true);
+    setRowSelected(item);
+  };
 
   return (
     <div className="app-content">
@@ -78,28 +90,41 @@ function Jobs() {
             </tr>
           </thead>
           <tbody>
-            {jobs.map((item, index) => (
-              <tr key={item.id}>
-                <td style={{ textAlign: "center" }}>{index + 1}</td>
-                <td>{item.status}</td>
-                <td>{item.title}</td>
-                <td>{item.type}</td>
-                <td>{item.enterprise_name}</td>
-                <td>{item.start_date}</td>
-                <td>
-                  {item.exact_salary
-                    ? item.exact_salary
-                    : `${JSON.parse(item.range_salary)[0]} - ${
-                        JSON.parse(item.range_salary)[1]
-                      }`}
-                </td>
-                <td>{item.currency}</td>
-                <td>{item.experience}</td>
-              </tr>
-            ))}
+            {jobs.length !== 0 &&
+              jobs.map((item, index) => (
+                <tr key={item.id} onClick={() => handleOnClickRow(item)}>
+                  <td style={{ textAlign: "center" }}>{index + 1}</td>
+                  <td>{item.status}</td>
+                  <td>{item.title}</td>
+                  <td>{item.type}</td>
+                  <td>{item.enterprise_name}</td>
+                  <td>{getTimeString(item.start_date)}</td>
+                  <td>
+                    {item.exact_salary
+                      ? item.exact_salary
+                      : `${JSON.parse(item.range_salary)[0]} - ${
+                          JSON.parse(item.range_salary)[1]
+                        }`}
+                  </td>
+                  <td>{item.currency}</td>
+                  <td style={{ textAlign: "center" }}>
+                    {item.experience === 1 && "No"}
+                    {item.experience === 2 && "1 year"}
+                    {item.experience === 3 && "2-3 years"}
+                    {item.experience === 4 && "more than 4 years"}
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </Table>
       </div>
+      {rowSelected && (
+        <JobDetailModal
+          isOpen={isOpenModal}
+          toggle={toggle}
+          data={rowSelected}
+        ></JobDetailModal>
+      )}
     </div>
   );
 }

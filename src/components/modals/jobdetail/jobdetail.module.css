@@ -1,0 +1,25 @@
+.jobDetailModal {
+  .contentColumn {
+    display: flex;
+    gap: 50px;
+    max-height: 60vh;
+    height: 100%;
+    overflow-y: scroll;
+  }
+  p {
+    margin-bottom: 0.5rem;
+  }
+}
+@media screen and (max-width: 992px) {
+  .jobDetailModal {
+    flex-direction: column;
+    .contentColumn {
+      flex-flow: column;
+      gap: 10px;
+      max-height: 100%;
+      div {
+        width: 100%;
+      }
+    }
+  }
+}
