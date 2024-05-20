@@ -57,3 +57,21 @@
     }
   }
 }
+
+.primary-btn {
+  background-color: #6b5dff !important;
+  border: 0 !important;
+}
+
+.primary-btn:hover {
+  background-color: #7265ff !important;
+}
+
+.yellow-btn {
+  background-color: #f1ff5d !important;
+  border: 0 !important;
+}
+
+.yellow-btn:hover {
+  background-color: #efff41 !important;
+}

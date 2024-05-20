@@ -26,6 +26,8 @@ function Jobs() {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [rowSelected, setRowSelected] = useState(null);
 
+  const [rerender, setRerender] = useState(false);
+
   const handleFilterClick = async () => {
     const respone = await getJobList({
       pageId,
@@ -41,7 +43,7 @@ function Jobs() {
 
   useEffect(() => {
     handleFilterClick();
-  }, []);
+  }, [rerender]);
 
   const handleOnClickRow = (item) => {
     setIsOpenModal(true);
@@ -70,7 +72,7 @@ function Jobs() {
             </option>
           ))}
         </Form.Select>
-        <Button variant="primary" type="submit">
+        <Button className="dark-btn" type="submit">
           View
         </Button>
       </Form>
@@ -123,6 +125,7 @@ function Jobs() {
           isOpen={isOpenModal}
           toggle={toggle}
           data={rowSelected}
+          rerender={() => setRerender((prev) => !prev)}
         ></JobDetailModal>
       )}
     </div>

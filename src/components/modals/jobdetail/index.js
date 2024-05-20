@@ -1,5 +1,6 @@
 import { Button, Modal } from "react-bootstrap";
 
+import { changeJobStatus } from "../../../services/configAPI";
 import { getTimeString } from "../../../ulti/func";
 
 import styles from "./jobdetail.module.css";
@@ -19,8 +20,16 @@ const sessions = {
   2: "Evening",
 };
 
-function JobDetailModal({ isOpen, toggle, data }) {
+function JobDetailModal({ isOpen, toggle, data, rerender }) {
   const workShift = JSON.parse(data.work_shift);
+
+  const handleChangeJobStatus = async (job_id, status) => {
+    const respone = await changeJobStatus({ job_id, status });
+    if (respone.status === 200) {
+      toggle();
+      rerender();
+    }
+  };
 
   return (
     <Modal
@@ -29,7 +38,9 @@ function JobDetailModal({ isOpen, toggle, data }) {
       size="xl"
       className={styles.jobDetailModal}
     >
-      <Modal.Header closeButton>{data.title}</Modal.Header>
+      <Modal.Header closeButton>
+        <b>{data.title}</b>
+      </Modal.Header>
       <Modal.Body>
         <div className={styles.contentColumn}>
           <div style={{ width: "40%" }}>
@@ -113,13 +124,24 @@ function JobDetailModal({ isOpen, toggle, data }) {
       <Modal.Footer>
         {data.status === "REVIEW" && (
           <>
-            <Button variant="danger">Deny</Button>
-            <Button variant="success">Accept</Button>
+            <Button
+              className="yellow-btn"
+              variant="warning"
+              onClick={() => handleChangeJobStatus(data.id, "DENIED")}
+            >
+              Deny
+            </Button>
+            <Button
+              className="primary-btn"
+              onClick={() => handleChangeJobStatus(data.id, "POSTED")}
+            >
+              Accept
+            </Button>
           </>
         )}
         {data.status !== "REVIEW" && (
           <>
-            <Button>Close</Button>
+            <Button onClick={toggle}>Close</Button>
           </>
         )}
       </Modal.Footer>

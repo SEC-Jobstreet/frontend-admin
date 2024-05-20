@@ -8,17 +8,19 @@
   }
 }
 
-td {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-th,
-td {
-  max-width: 250px !important;
-}
-
 .tableContainer .table {
   max-width: 1200px;
+  tbody tr {
+    cursor: pointer;
+  }
+  td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  th,
+  td {
+    max-width: 250px !important;
+  }
 }
