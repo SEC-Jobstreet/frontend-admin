@@ -1,4 +1,4 @@
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { Button, Modal } from "react-bootstrap";
 
 import { getTimeString } from "../../../ulti/func";
 
@@ -21,15 +21,16 @@ const sessions = {
 
 function JobDetailModal({ isOpen, toggle, data }) {
   const workShift = JSON.parse(data.work_shift);
+
   return (
     <Modal
-      isOpen={isOpen}
-      toggle={toggle}
+      show={isOpen}
+      onHide={toggle}
       size="xl"
       className={styles.jobDetailModal}
     >
-      <ModalHeader toggle={toggle}>{data.title}</ModalHeader>
-      <ModalBody>
+      <Modal.Header closeButton>{data.title}</Modal.Header>
+      <Modal.Body>
         <div className={styles.contentColumn}>
           <div style={{ width: "40%" }}>
             <p>
@@ -47,7 +48,7 @@ function JobDetailModal({ isOpen, toggle, data }) {
               <br />
               <span>{data.type}</span>
             </p>
-            <p>
+            <div>
               <u>Work shift:</u>
               {data.work_whenever ? (
                 <span>Giờ làm việc linh hoạt</span>
@@ -59,7 +60,7 @@ function JobDetailModal({ isOpen, toggle, data }) {
                         (workShift[0][idx] ||
                           workShift[1][idx] ||
                           workShift[2][idx]) && (
-                          <li>{`${days[idx]}: ${
+                          <li key={`${data.id}-${days[idx]}`}>{`${days[idx]}: ${
                             workShift[0][idx] ? `${sessions[0]}` : ""
                           }${workShift[1][idx] ? `, ${sessions[1]}` : ""}${
                             workShift[2][idx] ? `, ${sessions[2]}` : ""
@@ -68,7 +69,7 @@ function JobDetailModal({ isOpen, toggle, data }) {
                     )}
                 </ul>
               )}
-            </p>
+            </div>
             <p>
               <u>Visa:</u>
               <span> {data.visa ? "yes" : "no"}</span>
@@ -108,10 +109,20 @@ function JobDetailModal({ isOpen, toggle, data }) {
             </p>
           </div>
         </div>
-      </ModalBody>
-      <ModalFooter>
-        <Button color="primary">Click</Button>
-      </ModalFooter>
+      </Modal.Body>
+      <Modal.Footer>
+        {data.status === "REVIEW" && (
+          <>
+            <Button variant="danger">Deny</Button>
+            <Button variant="success">Accept</Button>
+          </>
+        )}
+        {data.status !== "REVIEW" && (
+          <>
+            <Button>Close</Button>
+          </>
+        )}
+      </Modal.Footer>
     </Modal>
   );
 }

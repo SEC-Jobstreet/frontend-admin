@@ -1,12 +1,12 @@
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { Button, Modal } from "react-bootstrap";
 
 import "./common.css";
 
 function CandidateModal({ isOpen, toggle, data }) {
   return (
-    <Modal isOpen={isOpen} toggle={toggle} size="lg" className="candidate-modal">
-      <ModalHeader toggle={toggle}>Detail</ModalHeader>
-      <ModalBody>
+    <Modal show={isOpen} onHide={toggle} size="lg" className="candidate-modal">
+      <Modal.Header closeButton>Detail</Modal.Header>
+      <Modal.Body>
         <div className="modal-body-content">
           <div className="width-50">
             <b>First Name:</b>
@@ -49,10 +49,10 @@ function CandidateModal({ isOpen, toggle, data }) {
             <span>{data.bloodGroup}</span>
           </div>
         </div>
-      </ModalBody>
-      <ModalFooter>
-        <Button color="primary">Click</Button>
-      </ModalFooter>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="primary">Click</Button>
+      </Modal.Footer>
     </Modal>
   );
 }

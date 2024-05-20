@@ -13,7 +13,6 @@ function App() {
   const [rehydrated, setReHydated] = useState(false);
   const dispatch = useDispatch();
 
-
   useEffect(() => {
     const checkToken = async () => {
       try {
