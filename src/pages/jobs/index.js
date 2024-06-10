@@ -102,7 +102,7 @@ function Jobs() {
                   <td>{item.enterprise_name}</td>
                   <td>{getTimeString(item.start_date)}</td>
                   <td>
-                    {item.exact_salary
+                    {item.range_salary === ""
                       ? item.exact_salary
                       : `${JSON.parse(item.range_salary)[0]} - ${
                           JSON.parse(item.range_salary)[1]

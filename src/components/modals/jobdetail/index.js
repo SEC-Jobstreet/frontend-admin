@@ -103,7 +103,7 @@ function JobDetailModal({ isOpen, toggle, data, rerender }) {
               <u>Salary:</u>
               <span>
                 {" "}
-                {data.exact_salary
+                {data.range_salary === ""
                   ? data.exact_salary
                   : `${JSON.parse(data.range_salary)[0]} - ${
                       JSON.parse(data.range_salary)[1]
