@@ -50,5 +50,5 @@ jobs:
       - name: Run docker container frontend-admin-prod
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.FRONTEND_REMOTE_SERVER_USERNAME }}@${{ secrets.FRONTEND_REMOTE_SERVER_ADDRESS }} << 'ENDSSH'
-          docker run -d -p 3002:3002 --name frontend-admin-prod nguyenthuanit265/frontend-admin:latest
+          docker run -d -p 3002:82 --name frontend-admin-prod nguyenthuanit265/frontend-admin:latest
           ENDSSH
