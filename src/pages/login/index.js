@@ -7,9 +7,11 @@ import { signIn } from "aws-amplify/auth";
 import CustomInput from "../../components/input";
 
 import "./index.css";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,11 +23,15 @@ function Login() {
     console.log({ email, password });
 
     try {
-      await signIn({
+      const res = await signIn({
         username: email,
         password: password,
       });
-      dispatch(loginAccount({ email: email }));
+      console.log(res)
+      if (res.isSignedIn) {
+        dispatch(loginAccount({ email: email }));
+        navigate("/jobs")
+      }
       // dispatch(setNotification(notiLoginAccount));
       // const temp = document.querySelector(".login-widget-from-nav");
       // if (temp) temp.style.display = "none";

@@ -19,17 +19,17 @@ function AppRouter() {
     <Routes>
       <Route
         element={
-          <ProtectedRoute isAllowed={user.email === ""} redirectPath="/" />
+          <ProtectedRoute isAllowed={user.email === ""} redirectPath="/jobs" />
         }
       >
         <Route path="login" element={<Login />} />
       </Route>
       <Route element={<ProtectedRoute isAllowed={user.email !== ""} />}>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/candidates" element={<Candidates />} />
-        <Route exact path="/employers" element={<Employers />} />
-        <Route exact path="/jobs" element={<Jobs />} />
-        <Route exact path="/enterprises" element={<Enterprises />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/candidates" element={<Candidates />} />
+        <Route path="/employers" element={<Employers />} />
+        <Route path="/jobs" element={<Jobs />} />
+        <Route path="/enterprises" element={<Enterprises />} />
       </Route>
     </Routes>
   );
